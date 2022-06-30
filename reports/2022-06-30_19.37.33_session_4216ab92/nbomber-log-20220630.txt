@@ -1,0 +1,16 @@
+2022-06-30 21:37:52.398 +02:00 [INF] [ThreadId:1] NBomber '2.1.5' Started a new session: '2022-06-30_19.37.33_session_4216ab92'.
+2022-06-30 21:37:52.463 +02:00 [INF] [ThreadId:1] NBomber started as single node.
+2022-06-30 21:37:52.518 +02:00 [INF] [ThreadId:4] Plugins: 'NBomber.Plugins.Network.PingPlugin' loaded.
+2022-06-30 21:37:52.518 +02:00 [INF] [ThreadId:4] Reporting sinks: no reporting sinks were loaded.
+2022-06-30 21:37:52.519 +02:00 [INF] [ThreadId:4] Starting init...
+2022-06-30 21:37:52.526 +02:00 [INF] [ThreadId:4] Start init plugin: 'NBomber.Plugins.Network.PingPlugin'.
+2022-06-30 21:37:52.627 +02:00 [INF] [ThreadId:4] Target scenarios: 'simple_http'.
+2022-06-30 21:37:52.657 +02:00 [INF] [ThreadId:4] Start init client pool: 'nbomber_http_factory.simple_http'.
+2022-06-30 21:37:53.678 +02:00 [INF] [ThreadId:4] Init finished.
+2022-06-30 21:37:53.680 +02:00 [INF] [ThreadId:6] Starting warm up...
+2022-06-30 21:37:59.711 +02:00 [INF] [ThreadId:76] Starting bombing...
+2022-06-30 21:38:31.732 +02:00 [INF] [ThreadId:17] Stop plugin: 'NBomber.Plugins.Network.PingPlugin'.
+2022-06-30 21:38:31.734 +02:00 [INF] [ThreadId:23] Stopping scenarios...
+2022-06-30 21:38:31.736 +02:00 [INF] [ThreadId:23] Start disposing client pool: 'nbomber_http_factory.simple_http'.
+2022-06-30 21:38:32.746 +02:00 [INF] [ThreadId:23] Calculating final statistics...
+2022-06-30 21:38:32.952 +02:00 [INF] [ThreadId:83] Reports saved in folder: 'C:\Users\zimba\source\repos\NBomberTest\reports\2022-06-30_19.37.33_session_4216ab92'

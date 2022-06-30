@@ -2,20 +2,30 @@
 
 using NBomber.Contracts;
 using NBomber.CSharp;
+using NBomber.Plugins.Http.CSharp;
+using NBomber.Plugins.Network.Ping;
 
-using var httpClient = new HttpClient();
-
-var step = Step.Create("fetch_html_page", async context =>
+var step = Step.Create("fetch_html_page",
+    clientFactory: HttpClientFactory.Create(),
+    execute: context =>
 {
-    var response = await httpClient.GetAsync("https://nbomber.com");
-    
-    return response.IsSuccessStatusCode
-        ? Response.Ok()
-        : Response.Fail();
+    var request = Http.CreateRequest("GET", "https://nbomber.com")
+        .WithHeader("Accept", "text/html");
+
+    return Http.Send(request, context);
 });
 
-var scenario = ScenarioBuilder.CreateScenario("simple_http", step);
+var scenario = ScenarioBuilder
+    .CreateScenario("simple_http", step)
+    .WithWarmUpDuration(TimeSpan.FromSeconds(5))
+    .WithLoadSimulations(
+        Simulation.InjectPerSec(rate: 100, during: TimeSpan.FromSeconds(30))    
+    );
+
+var pingPluginConfig = PingPluginConfig.CreateDefault(new[] {"nbomber.com"});
+var pingPlugin = new PingPlugin(pingPluginConfig);
 
 NBomberRunner
     .RegisterScenarios(scenario)
+    .WithWorkerPlugins(pingPlugin)
     .Run();
