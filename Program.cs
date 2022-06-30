@@ -3,15 +3,18 @@
 using NBomber.Contracts;
 using NBomber.CSharp;
 
-Console.WriteLine("Hello, World!");
+using var httpClient = new HttpClient();
 
-var step = Step.Create("step", async context =>
+var step = Step.Create("fetch_html_page", async context =>
 {
-    await Task.Delay(TimeSpan.FromMilliseconds(500));
-    return Response.Ok();
+    var response = await httpClient.GetAsync("https://nbomber.com");
+    
+    return response.IsSuccessStatusCode
+        ? Response.Ok()
+        : Response.Fail();
 });
 
-var scenario = ScenarioBuilder.CreateScenario("hello_world", step);
+var scenario = ScenarioBuilder.CreateScenario("simple_http", step);
 
 NBomberRunner
     .RegisterScenarios(scenario)
